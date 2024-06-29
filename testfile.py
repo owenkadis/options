@@ -4,12 +4,12 @@ import sys
 print(sys.path)
 from datetime import timedelta
 import numpy as np 
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from scipy import stats 
+from scipy import stats
 
 class EuropeanCall:
-
+ 
     def d1(self, asset_price, strike_price, risk_free_rate, volatility, dt):
         return (np.log((asset_price/strike_price)) + (risk_free_rate + np.power(volatility,2)/2)*dt)/(volatility*np.sqrt(dt))
 
@@ -38,7 +38,8 @@ class EuropeanCall:
         self.risk_free_rate = risk_free_rate
         self.drift = drift
         # Calculate delta t
-        dt = np.busday_count(datetime.date.today(), expiration_date) / 252
+        dt = 59/252
+        #dt = np.busday_count(datetime.date.today(), expiration_date) / 252
         # Calculate d1
         d1 = self.d1(asset_price, strike_price, risk_free_rate, volatility, dt)
         # Calculate d2
